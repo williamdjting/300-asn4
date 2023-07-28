@@ -1,16 +1,25 @@
+#include "secret_headers.h"
+#include "struct.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-// Function prototypes (if needed)
-// e.g., void myFunction();
-
-int main() {
-    // Your code here
-
-    // Example: Printing "Hello, World!"
-    printf("Hello, World!\n");
-
-    // Function calls (if needed)
-    // e.g., myFunction();
-
-    return 0;
+int main( int argc, char *argv[] )  {
+   struct fileArgs myFile;
+   if( argc == 2 ) {
+      if(argv[1][0] == '-'){
+         myFile.options = argv[1];
+      }
+      printf("%s\n",myFile.options);
+   }
+   else if( argc > 2 ) {
+      if(argv[1][0] == '-'){
+         myFile.options = argv[1];
+         
+      }
+      
+   }
+   else {
+      system("ls -1");
+   }
 }
