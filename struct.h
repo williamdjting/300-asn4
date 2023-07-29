@@ -3,6 +3,6 @@
 #define MAX 256
 
 struct fileArgs{
-    char* options;
-    char* file_list[MAX];
+    char options[3];
+    char file_list[MAX][MAX];
 };

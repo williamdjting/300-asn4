@@ -32,7 +32,7 @@ int main()
     getAndPrintGroup(103);
     getAndPrintGroup(1000);
 
-    getAndPrintUserName(59894);
+    getAndPrintUserName(1000);
     getAndPrintUserName(23524);
     getAndPrintUserName(20746);
     getAndPrintUserName(5970);
