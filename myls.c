@@ -1,11 +1,11 @@
 #include "secret_headers.h"
-#include "struct.h"
 #include "func.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <dirent.h>
-#include<getopt.h>
+#include <getopt.h>
+#include <time.h>
 
 int main( int argc, char *argv[] )  {
    struct fileArgs myFile;
@@ -41,5 +41,5 @@ int main( int argc, char *argv[] )  {
       printf("testing option: %c\n",myFile.options[i]);
       printf("testing direciory %s\n",myFile.file_list[i]);
    }
-   ls(".",0,1);
+   ls(myFile,".",0,1);
 }
