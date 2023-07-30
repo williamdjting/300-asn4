@@ -39,13 +39,16 @@ int main( int argc, char *argv[] )  {
             break;
       }
    }
-   if(num==0){
+   if(argc==0){
       ls(myFile, 0, 1);
    }
    // Store the remaining command-line arguments as file_list in myFile struct
-   for (int i = 0; i < argc - num; i++) {
-      strcpy(myFile.file_list[i], argv[num + i]);
-      printf("MAIN TESTING: %s\n",argv[num + i]);
+   else{
+      for (int i = 0; i < argc - num-1; i++) {
+         strcpy(myFile.file_list[i], argv[1+num + i]);
+         printf("MAIN TESTING: %s\n",argv[1+num + i]);
+      }
+      ls(myFile,0,1);
    }
 
    // Debugging: Print the options and file_list
