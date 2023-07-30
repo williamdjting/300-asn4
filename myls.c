@@ -39,10 +39,13 @@ int main( int argc, char *argv[] )  {
             break;
       }
    }
-
+   if(num==0){
+      ls(myFile, 0, 1);
+   }
    // Store the remaining command-line arguments as file_list in myFile struct
    for (int i = 0; i < argc - num; i++) {
       strcpy(myFile.file_list[i], argv[num + i]);
+      printf("MAIN TESTING: %s\n",argv[num + i]);
    }
 
    // Debugging: Print the options and file_list
@@ -52,7 +55,7 @@ int main( int argc, char *argv[] )  {
    }
 
    // Call the ls function with the provided options and file_list
-   ls(myFile, ".", 0, 1); // Listing current directory with options: 'i', long format
+   // ls(myFile, 0, 1); // Listing current directory with options: 'i', long format
 
    return 0;
 }

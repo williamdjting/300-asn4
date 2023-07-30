@@ -13,42 +13,71 @@ struct fileArgs{
 };
 
 // Function to list files in the specified directory with provided options
-void ls(struct fileArgs myFile, const char *dir, int op_a, int op_l){
+void ls(struct fileArgs myFile, int op_a, int op_l){
     struct dirent *d;
-    DIR *dh = opendir(dir);
+    printf("TESTIGN : %s\n",myFile.file_list[0]);
+    if(strcmp(myFile.file_list[0],"\0")==0){
+        DIR *dh = opendir(".");
+        // Loop through directory entries and list files
+        while ((d = readdir(dh)) != NULL){
+            // Skip hidden files if op_a is not set (0)
+            if (!op_a && d->d_name[0] == '.'){
+                continue;
+            }
 
-    // Check if the directory can be opened
-    if (!dh){
-        if (errno == ENOENT){
-            perror("Directory does not exist");
-        }
-        else{
-            perror("Unable to read directory");
-        }
-        exit(EXIT_FAILURE);   // Exit the program with failure status
-    }
-
-    // Loop through directory entries and list files
-    while ((d = readdir(dh)) != NULL){
-        // Skip hidden files if op_a is not set (0)
-        if (!op_a && d->d_name[0] == '.'){
-            continue;
-        }
-
-        // Iterate through the options provided in myFile struct
-        for (int i = 0; myFile.options[i] != '\0'; i++){
-            if (myFile.options[i] == 'i'){
-                printf("%ju         ", d->d_ino);  // Display inode number
+            // Iterate through the options provided in myFile struct
+            for (int i = 0; myFile.options[i] != '\0'; i++){
+                if (myFile.options[i] == 'i'){
+                    printf("%ju         ", d->d_ino);  // Display inode number
+                }
+            }
+            
+            printf("%s ", d->d_name);   // Print the name of the file/directory
+            
+            if (op_l){
+                printf("\n");   // Print a newline if long format option (op_l) is set
             }
         }
-        
-        printf("%s ", d->d_name);   // Print the name of the file/directory
-        
-        if (op_l){
-            printf("\n");   // Print a newline if long format option (op_l) is set
+        closedir(dh);
+    }
+    
+    else{    
+        for(int i=0;myFile.file_list[i]!=NULL;i++){   
+            DIR *dh = opendir(myFile.file_list[i]);
+            // Check if the directory can be opened
+            if (!dh){
+                if (errno == ENOENT){
+                    perror("Directory does not exist");
+                }
+                else{
+                    perror("Unable to read directory");
+                }
+                exit(EXIT_FAILURE);   // Exit the program with failure status
+            }
+
+            // Loop through directory entries and list files
+            while ((d = readdir(dh)) != NULL){
+                // Skip hidden files if op_a is not set (0)
+                if (!op_a && d->d_name[0] == '.'){
+                    continue;
+                }
+
+                // Iterate through the options provided in myFile struct
+                for (int i = 0; myFile.options[i] != '\0'; i++){
+                    if (myFile.options[i] == 'i'){
+                        printf("%ju         ", d->d_ino);  // Display inode number
+                    }
+                }
+                
+                printf("%s ", d->d_name);   // Print the name of the file/directory
+                
+                if (op_l){
+                    printf("\n");   // Print a newline if long format option (op_l) is set
+                }
+            }
+
+            closedir(dh);   // Close the directory after listing its contents
         }
     }
-
-    closedir(dh);   // Close the directory after listing its contents
 }
 
