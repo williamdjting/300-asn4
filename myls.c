@@ -5,11 +5,18 @@
 #include <string.h>
 #include <dirent.h>
 #include <getopt.h>
-#include <time.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <pwd.h>
+#include <grp.h>
+// #include <time.h>
+// #include "printlong.h"
 
 int main( int argc, char *argv[] )  {
    struct fileArgs myFile;
 
+    // printlong(".");
+    // printlong("/Users/willting/Desktop/300-asn4");
    int option;
    int num = 0;
 
@@ -52,10 +59,10 @@ int main( int argc, char *argv[] )  {
    }
 
    // Debugging: Print the options and file_list
-   for (int i = 0; i < 3; i++) {
-      printf("testing option: %c\n", myFile.options[i]);
-      printf("testing directory: %s\n", myFile.file_list[i]);
-   }
+//    for (int i = 0; i < 3; i++) {
+//       printf("testing option: %c\n", myFile.options[i]);
+//       printf("testing directory: %s\n", myFile.file_list[i]);
+//    }
 
    // Call the ls function with the provided options and file_list
    // ls(myFile, 0, 1); // Listing current directory with options: 'i', long format

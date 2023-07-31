@@ -1,3 +1,5 @@
+// this struct.h is not being used
+
 #include <stdio.h>
 
 #define MAX 256
