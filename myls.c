@@ -52,6 +52,7 @@ int main( int argc, char *argv[] )  {
    }
    // Store the remaining command-line arguments as file_list in myFile struct
    else{
+      myFile.num_files = argc - num-1;
       for (int i = 0; i < argc - num-1; i++) {
          strcpy(myFile.file_list[i], argv[1+num + i]);
          printf("line 57 MAIN TESTING: %s\n",argv[1+num + i]);
