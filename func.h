@@ -27,12 +27,12 @@ void ls(struct fileArgs myFile, int op_a, int op_l){
     // printf("line 18 TESTIGN : %s\n",myFile.file_list[0]);
     if(strcmp(myFile.file_list[0],"\0")==0){
         // DIR *dh = opendir(".");
-        DIR *dh = opendir("/Users/willting/Desktop/300-asn4");
+        DIR *dh = opendir(".");
         // need the opendir to take in the file path argument
-        if (dh == NULL) {
-        perror("Error: Unable to read directory");
-        exit(1);
-    }
+        // if (dh == NULL) {
+        // perror("Error: Unable to read directory");
+        // exit(1);
+    // }
         // need the opendir to take in the file path argument
 
         // Loop through directory entries and list files
@@ -43,22 +43,22 @@ void ls(struct fileArgs myFile, int op_a, int op_l){
             }
 
             // Iterate through the options provided in myFile struct
-            for (int i = 0; myFile.options[i] != '\0'; i++){
-                if (myFile.options[i] == 'i'){
+            // for (int i = 0; myFile.options[i] != '\0'; i++){
+                if (strcmp(myFile.options, "i")==0){
                     printf("%ju         ", d->d_ino);  // Display inode number
                 }
-                else if (myFile.options[i] == 'l'){
+                else if (strcmp(myFile.options , "l")==0){
                     // printf("line 36 here\n");
                     // printf("d_name: %s\n",d->d_name);
                     // print myFile.options[i]
-                    printf("myFile.options[i]: %c\n",myFile.options[i]);
+                    printf("myFile.options: %s\n",myFile.options);
                     char full_path1[256];
                     snprintf(full_path1, sizeof(full_path1), "%s/%s", "/Users/willting/Desktop/300-asn4", d->d_name);
                     printlong(full_path1);
                     // printlong("/Users/willting/Desktop/300-asn4");
                     
                 }
-                else if (myFile.options[i] == 'li' || myFile.options[i] == 'il'){
+                else if ( (strcmp(myFile.options , "li")==0) || (strcmp(myFile.options, "il")==0)){
                     // printf("line 36 here\n");
                     // printf("d_name: %s\n",d->d_name);
                     char full_path2[256];
@@ -67,7 +67,7 @@ void ls(struct fileArgs myFile, int op_a, int op_l){
                     // printlong("/Users/willting/Desktop/300-asn4");
                     
                 }
-                else if (myFile.options[i] == 'iRl' || myFile.options[i] == 'ilR' || myFile.options[i] == 'liR' || myFile.options[i] == 'lRi' || myFile.options[i] == 'Ril' || myFile.options[i] == 'Rli'){
+                else if ( (strcmp(myFile.options , "iRl")==0) || (strcmp(myFile.options , "ilR")==0) || (strcmp(myFile.options , "liR")==0) || (strcmp(myFile.options ,  "lRi")==0) || (strcmp(myFile.options , "Ril")==0) || (strcmp(myFile.options, "Rli")==0 )){
                     // printf("line 36 here\n");
                     // printf("d_name: %s\n",d->d_name);
                     char full_path3[256];
@@ -77,7 +77,7 @@ void ls(struct fileArgs myFile, int op_a, int op_l){
                     
                 }
 
-                else if (myFile.options[i] == 'lR' || myFile.options[i] == 'Rl'){
+                else if ((strcmp(myFile.options, "lR")==0) || (strcmp(myFile.options , "Rl")==0)){
                     // printf("line 36 here\n");
                     // printf("d_name: %s\n",d->d_name);
                     char full_path4[256];
@@ -86,7 +86,7 @@ void ls(struct fileArgs myFile, int op_a, int op_l){
                     // printlong("/Users/willting/Desktop/300-asn4");
                     
                 }
-                else if (myFile.options[i] == 'R'){
+                else if (strcmp(myFile.options, "R")==0){
                     // printf("line 36 here\n");
                     // printf("d_name: %s\n",d->d_name);
                     char full_path5[256];
@@ -96,10 +96,10 @@ void ls(struct fileArgs myFile, int op_a, int op_l){
                     
                 }
 
-                else if (myFile.options[i] == 'iR' || myFile.options[i] == 'Ri'){
+                else if ((strcmp(myFile.options, "iR")==0) || (strcmp(myFile.options, "Ri")==0)){
                     // printf("line 36 here\n");
                     // printf("d_name: %s\n",d->d_name);
-                    printf("myFile.options[i]: %c\n",myFile.options[i]);
+                    printf("myFile.options: %s\n",myFile.options);
                     char full_path6[256];
                     snprintf(full_path6, sizeof(full_path6), "%s/%s", "/Users/willting/Desktop/300-asn4", d->d_name);
                     printindexrecurse(full_path6);
@@ -107,7 +107,7 @@ void ls(struct fileArgs myFile, int op_a, int op_l){
                     
                 }
                 
-            }
+            // }
             
             printf("%s ", d->d_name);   // Print the name of the file/directory
             
@@ -125,6 +125,8 @@ void ls(struct fileArgs myFile, int op_a, int op_l){
             if (!dh){
                 if (errno == ENOENT){
                     perror("Error: Nonexistent files or directories");
+                    // print myFile.file_list[i]
+                    printf("line 129 myFile.file_list[i]: %s\n",myFile.file_list[i]);
                 }
                 else{
                     perror("Error: Unable to read directory");
@@ -140,10 +142,72 @@ void ls(struct fileArgs myFile, int op_a, int op_l){
                 }
 
                 // Iterate through the options provided in myFile struct
-                for (int i = 0; myFile.options[i] != '\0'; i++){
-                    if (myFile.options[i] == 'i'){
-                        printf("%ju         ", d->d_ino);  // Display inode number
-                    }
+                // for (int i = 0; myFile.options[i] != '\0'; i++){
+                //     if (myFile.options[i] == 'i'){
+                //         printf("%ju         ", d->d_ino);  // Display inode number
+                //     }
+                // }
+                if (strcmp(myFile.options, "i")==0){
+                    printf("%ju         ", d->d_ino);  // Display inode number
+                }
+                else if (strcmp(myFile.options , "l")==0){
+                    // printf("line 36 here\n");
+                    // printf("d_name: %s\n",d->d_name);
+                    // print myFile.options[i]
+                    printf("myFile.options: %s\n",myFile.options);
+                    char full_path1[256];
+                    snprintf(full_path1, sizeof(full_path1), "%s/%s", "/Users/willting/Desktop/300-asn4", d->d_name);
+                    printlong(full_path1);
+                    // printlong("/Users/willting/Desktop/300-asn4");
+                    
+                }
+                else if ( (strcmp(myFile.options , "li")==0) || (strcmp(myFile.options, "il")==0)){
+                    // printf("line 36 here\n");
+                    // printf("d_name: %s\n",d->d_name);
+                    char full_path2[256];
+                    snprintf(full_path2, sizeof(full_path2), "%s/%s", "/Users/willting/Desktop/300-asn4", d->d_name);
+                    printindexlong(full_path2);
+                    // printlong("/Users/willting/Desktop/300-asn4");
+                    
+                }
+                else if ( (strcmp(myFile.options , "iRl")==0) || (strcmp(myFile.options , "ilR")==0) || (strcmp(myFile.options , "liR")==0) || (strcmp(myFile.options ,  "lRi")==0) || (strcmp(myFile.options , "Ril")==0) || (strcmp(myFile.options, "Rli")==0 )){
+                    // printf("line 36 here\n");
+                    // printf("d_name: %s\n",d->d_name);
+                    char full_path3[256];
+                    snprintf(full_path3, sizeof(full_path3), "%s/%s", "/Users/willting/Desktop/300-asn4", d->d_name);
+                    printindexlongrecurse(full_path3);
+                    // printlong("/Users/willting/Desktop/300-asn4");
+                    
+                }
+
+                else if ((strcmp(myFile.options, "lR")==0) || (strcmp(myFile.options , "Rl")==0)){
+                    // printf("line 36 here\n");
+                    // printf("d_name: %s\n",d->d_name);
+                    char full_path4[256];
+                    snprintf(full_path4, sizeof(full_path4), "%s/%s", "/Users/willting/Desktop/300-asn4", d->d_name);
+                    printlongrecurse(full_path4);
+                    // printlong("/Users/willting/Desktop/300-asn4");
+                    
+                }
+                else if (strcmp(myFile.options, "R")==0){
+                    // printf("line 36 here\n");
+                    // printf("d_name: %s\n",d->d_name);
+                    char full_path5[256];
+                    snprintf(full_path5, sizeof(full_path5), "%s/%s", "/Users/willting/Desktop/300-asn4", d->d_name);
+                    printrecurse(full_path5);
+                    // printlong("/Users/willting/Desktop/300-asn4");
+                    
+                }
+
+                else if ((strcmp(myFile.options, "iR")==0) || (strcmp(myFile.options, "Ri")==0)){
+                    // printf("line 36 here\n");
+                    // printf("d_name: %s\n",d->d_name);
+                    printf("myFile.options: %s\n",myFile.options);
+                    char full_path6[256];
+                    snprintf(full_path6, sizeof(full_path6), "%s/%s", "/Users/willting/Desktop/300-asn4", d->d_name);
+                    printindexrecurse(full_path6);
+                    // printlong("/Users/willting/Desktop/300-asn4");
+                    
                 }
                 
                 printf("%s ", d->d_name);   // Print the name of the file/directory
