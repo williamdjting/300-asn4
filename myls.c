@@ -41,6 +41,7 @@ int main( int argc, char *argv[] )  {
             num++;
             printf("R\n"); // Debugging: Print to confirm the 'R' option is found
             break;
+            
          default:
             // Invalid option or missing argument, do nothing for now
             break;
@@ -53,7 +54,7 @@ int main( int argc, char *argv[] )  {
    else{
       for (int i = 0; i < argc - num-1; i++) {
          strcpy(myFile.file_list[i], argv[1+num + i]);
-         printf("MAIN TESTING: %s\n",argv[1+num + i]);
+         printf("line 57 MAIN TESTING: %s\n",argv[1+num + i]);
       }
       ls(myFile,0,1);
    }
