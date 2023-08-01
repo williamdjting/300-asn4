@@ -3,8 +3,8 @@
 // #include <dirent.h>
 // #include <sys/stat.h>
 // #include <sys/types.h>
-// #include <pwd.h>
-// #include <grp.h>
+#include <pwd.h>
+#include <grp.h>
  #include <time.h>
 // included in myls.c
 

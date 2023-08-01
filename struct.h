@@ -7,4 +7,5 @@
 struct fileArgs{
     char options[3];
     char file_list[MAX][MAX];
+    char file_name[MAX];
 };
