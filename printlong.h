@@ -54,7 +54,7 @@ void printlong(const char *filename) {
 
     // File name
     printf(" %s", filename);
-    printf("/");
+    // printf("/");
 
     // printf("line 58 end of function printlong.h\n");
 }
