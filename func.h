@@ -152,7 +152,8 @@ void ls(struct fileArgs myFile, int op_a, int op_l){
                 //     }
                 // }
                 if (strcmp(myFile.options, "i")==0){
-                    printf("%ju         ", d->d_ino);  // Display inode number
+                    printf("%ju         %s", d->d_ino, d->d_name);  // Display inode number
+                    
                 }
                 else if (strcmp(myFile.options , "l")==0){
 
