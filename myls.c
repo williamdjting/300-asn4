@@ -61,7 +61,9 @@ int main( int argc, char *argv[] )  {
    // }
    if (optind == argc) {
         // No file arguments provided, ls the current directory
-        ls(myFile, 0, 1);
+        myFile.num_files=1;
+         strcpy(myFile.file_list[0], ".");
+      ls(myFile, 0, 1);
     } else {
         myFile.num_files = argc - optind;
         for (int i = 0; i < myFile.num_files; i++) {
