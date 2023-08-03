@@ -10,7 +10,7 @@
 
 void printrecurse(const char *filename) {
     // print i am here
-    printf("line 13f inside printrecurse\n");
+    // printf("line 13f inside printrecurse\n");
     struct stat fileStat;
     if (stat(filename, &fileStat) == -1) {
         perror("stat");

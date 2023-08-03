@@ -27,19 +27,19 @@ int main( int argc, char *argv[] )  {
             // Option 'i' is present, add it to the options array in myFile
             myFile.options[num] = 'i';
             num++;
-            printf("i\n"); // Debugging: Print to confirm the 'i' option is found
+            // printf("i\n"); // Debugging: Print to confirm the 'i' option is found
             break;
          case 'l':
             // Option 'l' is present, add it to the options array in myFile
             myFile.options[num] = 'l';
             num++;
-            printf("l\n"); // Debugging: Print to confirm the 'l' option is found
+            // printf("l\n"); // Debugging: Print to confirm the 'l' option is found
             break;
          case 'R':
             // Option 'R' is present, add it to the options array in myFile
             myFile.options[num] = 'R';
             num++;
-            printf("R\n"); // Debugging: Print to confirm the 'R' option is found
+            // printf("R\n"); // Debugging: Print to confirm the 'R' option is found
             break;
             
          default:
@@ -47,18 +47,34 @@ int main( int argc, char *argv[] )  {
             break;
       }
    }
-   if(argc==0){
-      ls(myFile, 0, 1);
-   }
-   // Store the remaining command-line arguments as file_list in myFile struct
-   else{
-      myFile.num_files = argc - num-1;
-      for (int i = 0; i < argc - num-1; i++) {
-         strcpy(myFile.file_list[i], argv[1+num + i]);
-         printf("line 57 MAIN TESTING: %s\n",argv[1+num + i]);
-      }
-      ls(myFile,0,1);
-   }
+   // if(argc==0){
+   //    ls(myFile, 0, 1);
+   // }
+   // // Store the remaining command-line arguments as file_list in myFile struct
+   // else{
+   //    myFile.num_files = argc - num-1;
+   //    for (int i = 0; i < argc - num-1; i++) {
+   //       strcpy(myFile.file_list[i], argv[1+num + i]);
+   //       printf("line 57 MAIN TESTING: %s\n",argv[1+num + i]);
+   //    }
+   //    ls(myFile,0,1);
+   // }
+   if (optind == argc) {
+        // No file arguments provided, ls the current directory
+        myFile.num_files=1;
+        strcpy(myFile.file_list[0], ".");
+        ls(myFile, 0, 1);
+    } 
+    else {
+        myFile.num_files = argc - optind;
+        for (int i = 0; i < myFile.num_files; i++) {
+            strcpy(myFile.file_list[i], argv[optind + i]);
+            // printf("line 57 MAIN TESTING: %s\n", argv[optind + i]);
+        }
+        ls(myFile, 0, 1);
+    }
+
+
 
    // Debugging: Print the options and file_list
 //    for (int i = 0; i < 3; i++) {

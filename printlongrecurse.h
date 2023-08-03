@@ -10,7 +10,7 @@
 
 void printlongrecurse(const char *filename) {
     // print i am here
-    printf("line 13e inside printlongrecurse\n");
+    // printf("line 13e inside printlongrecurse\n");
     struct stat fileStat;
     if (stat(filename, &fileStat) == -1) {
         perror("stat");

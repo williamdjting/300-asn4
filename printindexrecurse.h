@@ -10,12 +10,14 @@
 
 void printindexrecurse(const char *filename) {
     // print i am here
-    printf("line 13c inside printindexrecurse\n");
+    // printf("line 13c inside printindexrecurse\n");
     struct stat fileStat;
     if (stat(filename, &fileStat) == -1) {
         perror("stat");
         return;
     }
+    // Inode number
+    printf(" %lu", fileStat.st_ino);
 
     // File type and permissions
     printf((S_ISDIR(fileStat.st_mode)) ? "d" : "-");
@@ -29,8 +31,6 @@ void printindexrecurse(const char *filename) {
     printf((fileStat.st_mode & S_IWOTH) ? "w" : "-");
     printf((fileStat.st_mode & S_IXOTH) ? "x" : "-");
 
-    // Inode number
-    printf(" %lu", fileStat.st_ino);
 
     // Number of hard links
     printf(" %ld", fileStat.st_nlink);

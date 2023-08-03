@@ -10,13 +10,18 @@
 
 void printindexlong(const char *filename) {
     // print i am here
-    printf("line 13a inside printindexlong\n");
+
+    
+
+
+    // printf("line 13a inside printindexlong\n");
     struct stat fileStat;
     if (stat(filename, &fileStat) == -1) {
         perror("stat");
         return;
     }
-
+    // Inode number
+    printf(" %lu ", fileStat.st_ino);
     // File type and permissions
     printf((S_ISDIR(fileStat.st_mode)) ? "d" : "-");
     printf((fileStat.st_mode & S_IRUSR) ? "r" : "-");
@@ -29,8 +34,7 @@ void printindexlong(const char *filename) {
     printf((fileStat.st_mode & S_IWOTH) ? "w" : "-");
     printf((fileStat.st_mode & S_IXOTH) ? "x" : "-");
 
-    // Inode number
-    printf(" %lu", fileStat.st_ino);
+    
 
     // Number of hard links
     printf(" %ld", fileStat.st_nlink);
@@ -52,11 +56,12 @@ void printindexlong(const char *filename) {
     
     // Last modification time
     char time_buf[100];
+
+    // strftime(time_buf, sizeof(time_buf), "%b %d %H:%M", localtime(&(fileStat.st_mtime)));
     strftime(time_buf, sizeof(time_buf), "%b %d %H:%M", localtime(&(fileStat.st_mtime)));
     printf(" %s", time_buf);
 
     // File name
     printf(" %s\n", filename);
-
     // printf("line 58 end of function printlong.h\n");
 }

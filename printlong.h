@@ -10,7 +10,7 @@
 
 void printlong(const char *filename) {
     // print i am here
-    printf("line 13d inside printlong\n");
+    // printf("line 13d inside printlong\n");
     struct stat fileStat;
     if (stat(filename, &fileStat) == -1) {
         perror("stat");
@@ -53,7 +53,8 @@ void printlong(const char *filename) {
     printf(" %s", time_buf);
 
     // File name
-    printf(" %s\n", filename);
+    printf(" %s", filename);
+    // printf("/");
 
     // printf("line 58 end of function printlong.h\n");
 }
