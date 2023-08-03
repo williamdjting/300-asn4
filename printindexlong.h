@@ -10,6 +10,10 @@
 
 void printindexlong(const char *filename) {
     // print i am here
+
+    
+
+
     printf("line 13a inside printindexlong\n");
     struct stat fileStat;
     if (stat(filename, &fileStat) == -1) {
@@ -52,6 +56,8 @@ void printindexlong(const char *filename) {
     
     // Last modification time
     char time_buf[100];
+
+    // strftime(time_buf, sizeof(time_buf), "%b %d %H:%M", localtime(&(fileStat.st_mtime)));
     strftime(time_buf, sizeof(time_buf), "%b %d %H:%M", localtime(&(fileStat.st_mtime)));
     printf(" %s", time_buf);
 

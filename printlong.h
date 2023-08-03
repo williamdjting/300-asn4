@@ -53,7 +53,8 @@ void printlong(const char *filename) {
     printf(" %s", time_buf);
 
     // File name
-    printf(" %s\n", filename);
+    printf(" %s", filename);
+    printf("/");
 
     // printf("line 58 end of function printlong.h\n");
 }

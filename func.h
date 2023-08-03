@@ -119,6 +119,11 @@ void ls(struct fileArgs myFile, int op_a, int op_l){
     
     else{    
         for(int i=0; i  < myFile.num_files;i++){   
+
+            
+
+
+
             DIR *dh = opendir(myFile.file_list[i]);
             // Check if the directory can be opened
             if (!dh){
@@ -150,55 +155,160 @@ void ls(struct fileArgs myFile, int op_a, int op_l){
                     printf("%ju         ", d->d_ino);  // Display inode number
                 }
                 else if (strcmp(myFile.options , "l")==0){
-                    // printf("line 36 here\n");
-                    // printf("d_name: %s\n",d->d_name);
-                    // print myFile.options[i]
-                    printf("myFile.options: %s\n",myFile.options);
-                    char full_path1[256];
-                    snprintf(full_path1, sizeof(full_path1), "%s/%s", myFile.file_list[i], d->d_name);
-                    printlong(full_path1);
-                    // printlong("/Users/willting/Desktop/300-asn4");
-                    
+
+                    // if first character of string is a / then check that
+                    if (myFile.file_list[i][0] != '/') {
+                        char cwd[256];
+                        if (getcwd(cwd, sizeof(cwd)) != NULL) {
+                            printf("Current working directory: %s\n", cwd);
+
+                            const char *relativePath = myFile.file_list[i];
+                            char absolutePath[256];
+
+                            if (strcmp(relativePath, ".") == 0) {
+                                strcpy(absolutePath, cwd);
+                            } else {
+                                snprintf(absolutePath, 256, "%s/%s", cwd, relativePath);
+                                printlong(absolutePath);
+                            }
+                        } 
+                        else {
+                        // printf("line 36 here\n");
+                        // printf("d_name: %s\n",d->d_name);
+                        // print myFile.options[i]
+                        printf("myFile.options: %s\n",myFile.options);
+                        char full_path1[256];
+                        snprintf(full_path1, sizeof(full_path1), "%s/%s", myFile.file_list[i], d->d_name);
+                        printlong(full_path1);
+                        // printlong("/Users/willting/Desktop/300-asn4");
+                        }
+                    }
                 }
                 else if ( (strcmp(myFile.options , "li")==0) || (strcmp(myFile.options, "il")==0)){
+
+                    if (myFile.file_list[i][0] != '/') {
+                        char cwd[256];
+                        if (getcwd(cwd, sizeof(cwd)) != NULL) {
+                            printf("Current working directory: %s\n", cwd);
+
+                            const char *relativePath = myFile.file_list[i];
+                            char absolutePath[256];
+
+                            if (strcmp(relativePath, ".") == 0) {
+                                strcpy(absolutePath, cwd);
+                            } else {
+                                snprintf(absolutePath, 256, "%s/%s", cwd, relativePath);
+                                printlong(absolutePath);
+                            }
+                        } 
+                        else {
                     // printf("line 36 here\n");
                     // printf("d_name: %s\n",d->d_name);
                     char full_path2[256];
                     snprintf(full_path2, sizeof(full_path2), "%s/%s", myFile.file_list[i], d->d_name);
                     printindexlong(full_path2);
                     // printlong("/Users/willting/Desktop/300-asn4");
-                    
+                        }
+                    }
                 }
                 else if ( (strcmp(myFile.options , "iRl")==0) || (strcmp(myFile.options , "ilR")==0) || (strcmp(myFile.options , "liR")==0) || (strcmp(myFile.options ,  "lRi")==0) || (strcmp(myFile.options , "Ril")==0) || (strcmp(myFile.options, "Rli")==0 )){
+
+                    if (myFile.file_list[i][0] != '/') {
+                        char cwd[256];
+                        if (getcwd(cwd, sizeof(cwd)) != NULL) {
+                            printf("Current working directory: %s\n", cwd);
+
+                            const char *relativePath = myFile.file_list[i];
+                            char absolutePath[256];
+
+                            if (strcmp(relativePath, ".") == 0) {
+                                strcpy(absolutePath, cwd);
+                            } else {
+                                snprintf(absolutePath, 256, "%s/%s", cwd, relativePath);
+                                printlong(absolutePath);
+                            }
+                        } 
+                        else {
                     // printf("line 36 here\n");
                     // printf("d_name: %s\n",d->d_name);
                     char full_path3[256];
                     snprintf(full_path3, sizeof(full_path3), "%s/%s", myFile.file_list[i], d->d_name);
                     printindexlongrecurse(full_path3);
                     // printlong("/Users/willting/Desktop/300-asn4");
-                    
+                        }
+                    }
                 }
 
                 else if ((strcmp(myFile.options, "lR")==0) || (strcmp(myFile.options , "Rl")==0)){
                     // printf("line 36 here\n");
                     // printf("d_name: %s\n",d->d_name);
+                    if (myFile.file_list[i][0] != '/') {
+                        char cwd[256];
+                        if (getcwd(cwd, sizeof(cwd)) != NULL) {
+                            printf("Current working directory: %s\n", cwd);
+
+                            const char *relativePath = myFile.file_list[i];
+                            char absolutePath[256];
+
+                            if (strcmp(relativePath, ".") == 0) {
+                                strcpy(absolutePath, cwd);
+                            } else {
+                                snprintf(absolutePath, 256, "%s/%s", cwd, relativePath);
+                                printlong(absolutePath);
+                            }
+                        } 
+                        else {
                     char full_path4[256];
                     snprintf(full_path4, sizeof(full_path4), "%s/%s", myFile.file_list[i], d->d_name);
                     printlongrecurse(full_path4);
                     // printlong("/Users/willting/Desktop/300-asn4");
-                    
+                        }
+                    }
                 }
                 else if (strcmp(myFile.options, "R")==0){
                     // printf("line 36 here\n");
                     // printf("d_name: %s\n",d->d_name);
+                    if (myFile.file_list[i][0] != '/') {
+                        char cwd[256];
+                        if (getcwd(cwd, sizeof(cwd)) != NULL) {
+                            printf("Current working directory: %s\n", cwd);
+
+                            const char *relativePath = myFile.file_list[i];
+                            char absolutePath[256];
+
+                            if (strcmp(relativePath, ".") == 0) {
+                                strcpy(absolutePath, cwd);
+                            } else {
+                                snprintf(absolutePath, 256, "%s/%s", cwd, relativePath);
+                                printlong(absolutePath);
+                            }
+                        } 
+                        else {
                     char full_path5[256];
                     snprintf(full_path5, sizeof(full_path5), "%s/%s", myFile.file_list[i], d->d_name);
                     printrecurse(full_path5);
                     // printlong("/Users/willting/Desktop/300-asn4");
-                    
+                        }
+                    }
                 }
 
                 else if ((strcmp(myFile.options, "iR")==0) || (strcmp(myFile.options, "Ri")==0)){
+                    if (myFile.file_list[i][0] != '/') {
+                        char cwd[256];
+                        if (getcwd(cwd, sizeof(cwd)) != NULL) {
+                            printf("Current working directory: %s\n", cwd);
+
+                            const char *relativePath = myFile.file_list[i];
+                            char absolutePath[256];
+
+                            if (strcmp(relativePath, ".") == 0) {
+                                strcpy(absolutePath, cwd);
+                            } else {
+                                snprintf(absolutePath, 256, "%s/%s", cwd, relativePath);
+                                printlong(absolutePath);
+                            }
+                        } 
+                        else {
                     // printf("line 36 here\n");
                     // printf("d_name: %s\n",d->d_name);
                     printf("myFile.options: %s\n",myFile.options);
@@ -206,7 +316,8 @@ void ls(struct fileArgs myFile, int op_a, int op_l){
                     snprintf(full_path6, sizeof(full_path6), "%s/%s", myFile.file_list[i], d->d_name);
                     printindexrecurse(full_path6);
                     // printlong("/Users/willting/Desktop/300-asn4");
-                    
+                        }
+                    }
                 }
                 
                 printf("%s ", d->d_name);   // Print the name of the file/directory
